@@ -2,7 +2,7 @@ import { ENDPOINT } from "../config.js";
 
 export default class PersonnageProvider {
 
-    static getPersonnages = async (limit = 10) => {
+    static getPersonnages = async () => {
         const options = {
             method: 'GET',
             headers: {
@@ -10,7 +10,10 @@ export default class PersonnageProvider {
             }
         };
         try {
-            const response = await fetch(`${ENDPOINT}/personnages?limit=${limit}`, options);
+            const response = await fetch(`${ENDPOINT}/personnages`, options);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const json = await response.json();
             return json;
         }
@@ -28,6 +31,9 @@ export default class PersonnageProvider {
         };
         try {
             const response = await fetch(`${ENDPOINT}/personnages/${id}`, options);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const json = await response.json();
             return json;
         }
