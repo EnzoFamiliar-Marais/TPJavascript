@@ -1,11 +1,13 @@
 import Utils from './services/utils.js';
 import PersonnagesAll from './services/views/pages/AllPerso.js';
 import PersonnageShow from './services/views/pages/PersonnageShow.js';
+import FavorisPage from './services/views/pages/FavorisPage.js';
 
 const routes = {
     '/': PersonnagesAll,
     '/personnages': PersonnagesAll,
     '/personnages/:id': PersonnageShow,
+    '/favoris': FavorisPage,
 };
 
 const Error404 = {
