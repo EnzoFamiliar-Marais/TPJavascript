@@ -10,8 +10,11 @@ export default class PersonnageProvider {
             }
         };
         try {
+            const url = `${ENDPOINT}/personnages?limit=${limit}`;
+            console.log(url);
             const response = await fetch(`${ENDPOINT}/personnages?limit=${limit}`, options);
             const json = await response.json();
+            console.log(json);
             return json;
         }
         catch (error) {
