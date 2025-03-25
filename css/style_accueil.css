@@ -1,0 +1,95 @@
+/* style.css */
+
+/* Style global pour le fond */
+body {
+    background-color: #e6f2ff; /* Bleu très clair pour le fond global */
+    color: #1c3d5a; /* Texte en bleu foncé */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Style pour la bannière */
+#documentationJeu img {
+    width: 100%;
+    height: 50vh;
+    border: 5px solid #4da6ff; /* Bordure bleu clair autour de la bannière */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Style pour les titres */
+#documentationJeu h2 {
+    font-size: 26px;
+    color: #004080; /* Bleu profond pour les titres */
+    margin-top: 20px;
+    border-bottom: 2px solid #66b3ff; /* Bordure fine sous les titres */
+    padding-bottom: 5px;
+}
+
+/* Style pour les paragraphes */
+#documentationJeu p {
+    font-size: 18px;
+    color: #1c3d5a; /* Bleu foncé pour le texte */
+    line-height: 1.8;
+    background-color: #cce6ff; /* Fond bleu très pâle pour le texte */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Style pour la liste des documents */
+#documentationJeu ul {
+    list-style: none;
+    padding: 0;
+}
+
+#documentationJeu ul li {
+    font-size: 16px;
+    color: #003366; /* Bleu profond pour les éléments de la liste */
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #b3d9ff; /* Fond bleu clair pour chaque élément de la liste */
+    border-left: 5px solid #4da6ff; /* Barre bleue à gauche pour styliser */
+    border-radius: 5px;
+}
+
+/* Style pour la section des personnages */
+#persoJeu {
+    margin-top: 40px;
+    background-color: #99ccff; /* Fond bleu clair pour la section des personnages */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour la liste des images de personnages */
+#persoJeu div {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Style pour chaque image de personnage */
+#persoJeu img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 3px solid #1c3d5a; /* Bordure bleu foncé autour des images */
+}
+
+#persoJeu img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: #66b3ff; /* Changement de la bordure au survol */
+}
+
+/* Style pour le titre de la section des personnages */
+#persoJeu h2 {
+    color: #004080; /* Bleu profond pour le titre des personnages */
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
