@@ -1,5 +1,5 @@
 import Utils from './services/utils.js';
-import PersonnagesAll from './services/views/pages/AllPerso.js';
+import PersonnagesAll from './services/views/pages/PersonnagesAll.js';
 import PersonnageShow from './services/views/pages/PersonnageShow.js';
 import Accueil from './services/views/pages/Accueil.js'
 

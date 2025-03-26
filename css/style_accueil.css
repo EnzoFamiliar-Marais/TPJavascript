@@ -55,7 +55,7 @@ body {
 
 /* Style pour la section des personnages */
 #persoJeu {
-    margin-top: 40px;
+    margin: 40px;
     background-color: #99ccff; /* Fond bleu clair pour la section des personnages */
     padding: 20px;
     border-radius: 10px;

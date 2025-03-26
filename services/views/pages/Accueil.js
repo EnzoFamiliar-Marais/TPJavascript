@@ -13,7 +13,7 @@ export default class Accueil {
         const banniere = document.createElement('img');
         banniere.src = `../../../imgs/Banniere.png`;
         banniere.alt = "image";
-        banniere.loading = "lazy";
+        banniere.loading = "lazy";  // Lazy loading pour optimiser le chargement de la bannière
 
         const titreDoc = document.createElement('h2');
         titreDoc.textContent = 'Guide du joueur';
@@ -72,20 +72,24 @@ export default class Accueil {
         async function chargerImages() {
             try {
                 const images = ["Voleur_de_l'Ombre.png", "mage.png", "soldat_du_nord.png"];
-                const nom_img = ["Voleur de l'ombre", "Mage élémentaliste", "Soldat du nord"];
-                var i = 0;
-
-                images.forEach(image => {
-                    // Créer l'image
+                const noms = ["Voleur de l'ombre", "Mage élémentaliste", "Soldat du nord"];
+                images.forEach((image, index) => {
+                    // Créer l'image avec lazy loading
                     const img = document.createElement('img');
                     img.src = `../../../imgs/${image}`;
-                    img.alt = image;
-                    img.style.display = 'block'; // Empêcher le chevauchement des éléments
+                    img.alt = noms[index];
+                    img.style.display = 'block';
+                    img.loading = 'lazy';
+                    img.style.cursor = 'pointer';
+
+                    img.addEventListener('click', () => {
+                        var personnageId = index + 1;
+                        window.location.hash = `/personnages/${personnageId}`;
+                    });
 
                     // Créer un paragraphe pour afficher le nom de l'image
                     const p = document.createElement('p');
-                    p.textContent = `${nom_img[i]}`;
-                    i++;
+                    p.textContent = noms[index];
                     p.style.textAlign = 'center';
                     p.style.fontSize = '14px';
                     p.style.fontWeight = 'bold';
