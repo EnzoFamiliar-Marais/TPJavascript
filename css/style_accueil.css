@@ -93,3 +93,44 @@ body {
     font-size: 24px;
     margin-bottom: 20px;
 }
+
+/* Style pour le conteneur des sélecteurs de personnages */
+#choixContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style pour les sélecteurs */
+#choixPersonnage1, #choixPersonnage2 {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #004080;
+    border-radius: 5px;
+    background-color: #e6f2ff;
+    color: #004080;
+}
+
+/* Style pour le bouton de combat */
+#boutonCombat {
+    background-color: #4da6ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#boutonCombat:hover {
+    background-color: #003366;
+}
+
+#persoJeu p {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}

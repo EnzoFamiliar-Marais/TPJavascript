@@ -64,26 +64,97 @@ export default class Accueil {
         listePerso.style.display = 'flex';
         listePerso.style.gap = '10px';
 
-        // Fonction pour charger dynamiquement les images
+        const listeLabelPerso = document.createElement('div');
+        listeLabelPerso.style.display = 'flex';
+        listeLabelPerso.style.gap = '10px';
+
+        // Fonction pour charger dynamiquement les images et les noms
         async function chargerImages() {
             try {
                 const images = ["Voleur_de_l'Ombre.png", "mage.png", "soldat_du_nord.png"];
+                const nom_img = ["Voleur de l'ombre", "Mage élémentaliste", "Soldat du nord"];
+                var i = 0;
 
                 images.forEach(image => {
+                    // Créer l'image
                     const img = document.createElement('img');
                     img.src = `../../../imgs/${image}`;
                     img.alt = image;
+                    img.style.display = 'block'; // Empêcher le chevauchement des éléments
+
+                    // Créer un paragraphe pour afficher le nom de l'image
+                    const p = document.createElement('p');
+                    p.textContent = `${nom_img[i]}`;
+                    i++;
+                    p.style.textAlign = 'center';
+                    p.style.fontSize = '14px';
+                    p.style.fontWeight = 'bold';
+                    p.style.marginTop = '5px';
+
                     listePerso.appendChild(img);
+                    listeLabelPerso.appendChild(p);
                 });
             } catch (error) {
                 console.error("Erreur lors du chargement des images :", error);
             }
         }
 
-        await chargerImages();
+        // Création de deux cases pour sélectionner les personnages
+        const choixContainer = document.createElement('div');
+        choixContainer.id = 'choixContainer';
+ 
+        const choix1 = document.createElement('select');
+        choix1.id = 'choixPersonnage1';
+        choix1.innerHTML = `
+            <option value="">-- Sélectionnez un personnage --</option>
+            <option value="Guerrier du Nord">Guerrier du Nord 🛡️</option>
+            <option value="Mage Élémentaire">Mage Élémentaire 🔥❄️</option>
+            <option value="Voleur de l’Ombre">Voleur de l’Ombre 🗡️</option>
+            <option value="Archer Elfique">Archer Elfique 🏹</option>
+            <option value="Nécromancien Maudit">Nécromancien Maudit ☠️</option>
+            <option value="Samouraï Errant">Samouraï Errant 🏯</option>
+            <option value="Cyborg du Futur">Cyborg du Futur 🤖</option>
+        `;
+ 
+        const choix2 = document.createElement('select');
+        choix2.id = 'choixPersonnage2';
+        choix2.innerHTML = `
+            <option value="">-- Sélectionnez un personnage --</option>
+            <option value="Guerrier du Nord">Guerrier du Nord 🛡️</option>
+            <option value="Mage Élémentaire">Mage Élémentaire 🔥❄️</option>
+            <option value="Voleur de l’Ombre">Voleur de l’Ombre 🗡️</option>
+            <option value="Archer Elfique">Archer Elfique 🏹</option>
+            <option value="Nécromancien Maudit">Nécromancien Maudit ☠️</option>
+            <option value="Samouraï Errant">Samouraï Errant 🏯</option>
+            <option value="Cyborg du Futur">Cyborg du Futur 🤖</option>
+        `;
+ 
+        choixContainer.appendChild(choix1);
+        choixContainer.appendChild(choix2);
+ 
+        // Création du bouton "Combat"
+        const boutonCombat = document.createElement('button');
+        boutonCombat.textContent = 'Lancer le Combat';
+        boutonCombat.id = 'boutonCombat';
+        boutonCombat.addEventListener('click', () => {
+            const personnage1 = document.getElementById('choixPersonnage1').value;
+            const personnage2 = document.getElementById('choixPersonnage2').value;
+ 
+            if (personnage1 && personnage2) {
+                // Rediriger vers une nouvelle page JS (par exemple, la page de combat)
+                window.location.href = `combat.html?perso1=${encodeURIComponent(personnage1)}&perso2=${encodeURIComponent(personnage2)}`;
+            } else {
+                alert('Veuillez choisir deux personnages avant de lancer le combat.');
+            }
+        });
+
+        await chargerImages(); // Charger les images et leurs noms
 
         persoJeu.appendChild(titrePerso);
-        persoJeu.appendChild(listePerso);
+        persoJeu.appendChild(listePerso); // Ajouter la liste des personnages
+        persoJeu.appendChild(listeLabelPerso); 
+        persoJeu.appendChild(choixContainer);
+        persoJeu.appendChild(boutonCombat);
 
         documentationJeu.appendChild(persoJeu);
 
