@@ -1,3 +1,6 @@
+import FavorisService from "../../FavorisService.js";  // Importation de FavorisService
+import PersonnageProvider from "../../PersonnageProvider.js";
+
 export default class Accueil {
     async render() {
         // Charger le fichier CSS dynamiquement
@@ -66,32 +69,30 @@ export default class Accueil {
 
         const listeLabelPerso = document.createElement('div');
         listeLabelPerso.style.display = 'flex';
-        listeLabelPerso.style.gap = '10px';
+        listeLabelPerso.style.gap = '10px';  
 
         // Fonction pour charger dynamiquement les images et les noms
         async function chargerImages() {
             try {
-                const images = ["Voleur_de_l'Ombre.png", "mage.png", "soldat_du_nord.png"];
-                const noms = ["Voleur de l'ombre", "Mage élémentaliste", "Soldat du nord"];
-                images.forEach((image, index) => {
+                const persos = await PersonnageProvider.getPersonnages(6);
+                persos.forEach(perso => {
                     // Créer le lien qui contient l'image
                     const lien = document.createElement('a');
-                    lien.href = `#/personnages/${index + 1}`; // La route vers la page du personnage
+                    lien.href = `#/personnages/${perso['id']}`; // La route vers la page du personnage
+                    lien.style.textDecoration = 'none';
                     
                     // Créer l'image avec lazy loading
                     const img = document.createElement('img');
-                    img.src = `../../../imgs/${image}`;
-                    img.alt = noms[index];
+                    img.id = 'perso';
+                    img.src = perso['img'];  // Assure-toi d'utiliser une vraie URL d'image
+                    img.alt = perso['nom'];
                     img.style.display = 'block';
                     img.loading = 'lazy';
                     img.style.cursor = 'pointer';
 
-                    // Ajouter l'image dans le lien
-                    lien.appendChild(img);
-
                     // Créer un paragraphe pour afficher le nom de l'image
                     const p = document.createElement('p');
-                    p.textContent = noms[index];
+                    p.textContent = perso['nom'];
                     p.style.textAlign = 'center';
                     p.style.fontSize = '14px';
                     p.style.fontWeight = 'bold';
@@ -99,67 +100,34 @@ export default class Accueil {
 
                     listePerso.appendChild(lien);  // Ajouter le lien avec l'image à la liste
                     listeLabelPerso.appendChild(p); // Ajouter le nom sous l'image
+
+                    // Vérification si le personnage est favori
+                    const isFavori = FavorisService.isFavori(perso['id']);
+                    if (isFavori) {
+                        // Ajouter un cœur si le personnage est favori
+                        const heart = document.createElement('span');
+                        heart.textContent = '❤️'; // Symbole de cœur
+                        heart.style.fontSize = '20px';
+                        heart.style.marginLeft = '10px'; // Espacement entre l'image et le cœur
+                        lien.appendChild(heart);
+                    }
+                    lien.appendChild(img); // Ajouter l'image dans le lien
                 });
             } catch (error) {
                 console.error("Erreur lors du chargement des images :", error);
             }
         }
 
-        // Création de deux cases pour sélectionner les personnages
-        const choixContainer = document.createElement('div');
-        choixContainer.id = 'choixContainer';
- 
-        const choix1 = document.createElement('select');
-        choix1.id = 'choixPersonnage1';
-        choix1.innerHTML = `
-            <option value="">-- Sélectionnez un personnage --</option>
-            <option value="Guerrier du Nord">Guerrier du Nord 🛡️</option>
-            <option value="Mage Élémentaire">Mage Élémentaire 🔥❄️</option>
-            <option value="Voleur de l’Ombre">Voleur de l’Ombre 🗡️</option>
-            <option value="Archer Elfique">Archer Elfique 🏹</option>
-            <option value="Nécromancien Maudit">Nécromancien Maudit ☠️</option>
-            <option value="Samouraï Errant">Samouraï Errant 🏯</option>
-            <option value="Cyborg du Futur">Cyborg du Futur 🤖</option>
-        `;
- 
-        const choix2 = document.createElement('select');
-        choix2.id = 'choixPersonnage2';
-        choix2.innerHTML = `
-            <option value="">-- Sélectionnez un personnage --</option>
-            <option value="Guerrier du Nord">Guerrier du Nord 🛡️</option>
-            <option value="Mage Élémentaire">Mage Élémentaire 🔥❄️</option>
-            <option value="Voleur de l’Ombre">Voleur de l’Ombre 🗡️</option>
-            <option value="Archer Elfique">Archer Elfique 🏹</option>
-            <option value="Nécromancien Maudit">Nécromancien Maudit ☠️</option>
-            <option value="Samouraï Errant">Samouraï Errant 🏯</option>
-            <option value="Cyborg du Futur">Cyborg du Futur 🤖</option>
-        `;
- 
-        choixContainer.appendChild(choix1);
-        choixContainer.appendChild(choix2);
- 
         // Création du bouton "Combat"
         const boutonCombat = document.createElement('button');
-        boutonCombat.textContent = 'Lancer le Combat';
+        boutonCombat.textContent = 'Jouer';
         boutonCombat.id = 'boutonCombat';
-        boutonCombat.addEventListener('click', () => {
-            const personnage1 = document.getElementById('choixPersonnage1').value;
-            const personnage2 = document.getElementById('choixPersonnage2').value;
- 
-            if (personnage1 && personnage2) {
-                // Rediriger vers une nouvelle page JS (par exemple, la page de combat)
-                window.location.href = `combat.html?perso1=${encodeURIComponent(personnage1)}&perso2=${encodeURIComponent(personnage2)}`;
-            } else {
-                alert('Veuillez choisir deux personnages avant de lancer le combat.');
-            }
-        });
 
         await chargerImages(); // Charger les images et leurs noms
 
         persoJeu.appendChild(titrePerso);
         persoJeu.appendChild(listePerso); // Ajouter la liste des personnages
         persoJeu.appendChild(listeLabelPerso); 
-        persoJeu.appendChild(choixContainer);
         persoJeu.appendChild(boutonCombat);
 
         documentationJeu.appendChild(persoJeu);

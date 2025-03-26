@@ -1,0 +1,61 @@
+/* Style général */
+h2 {
+    color: #007BFF; /* Bleu pour le titre */
+}
+
+p {
+    color: #333; /* Couleur neutre pour le texte descriptif */
+}
+
+/* Liste des favoris */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #007BFF; /* Bordure bleue pour chaque favori */
+    border-radius: 8px;
+    background-color: #f0f8ff; /* Fond bleu clair */
+}
+
+/* Liens */
+a {
+    color: #007BFF; /* Bleu pour les liens */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Bouton pour retirer un favori */
+button.remove-favori {
+    background-color: #0056b3; /* Bleu plus foncé pour le bouton */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button.remove-favori:hover {
+    background-color: #003d82; /* Changement de teinte au survol */
+}
+
+/* Retour à l'accueil */
+a[href="#/"] {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a[href="#/"]:hover {
+    background-color: #0056b3;
+}

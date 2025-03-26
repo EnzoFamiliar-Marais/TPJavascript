@@ -9,6 +9,7 @@
         "force": 20,
         "agilité": 10,
         "intelligence": 5,
+        "img": "imgs/soldat_du_nord.png",
         "equipements": [
           {
             "nom": "Épée Lourde",
@@ -50,6 +51,7 @@
         "force": 5,
         "agilité": 10,
         "intelligence": 25,
+        "img": "imgs/mage.png",
         "equipements": [
           {
             "nom": "Bâton de Feu",
@@ -91,6 +93,7 @@
         "force": 15,
         "agilité": 25,
         "intelligence": 10,
+        "img": "imgs/voleur_ombre.png",
         "equipements": [
           {
             "nom": "Dagues Enchantées",
@@ -132,6 +135,7 @@
         "force": 15,
         "agilité": 20,
         "intelligence": 15,
+        "img": "imgs/archer_elfique.png",
         "equipements": [
           {
             "nom": "Arc Long",
@@ -174,6 +178,7 @@
         "force": 10,
         "agilité": 10,
         "intelligence": 30,
+        "img": "imgs/necromancien_maudit.png",
         "equipements": [
           {
             "nom": "Sceptre des Ombres",
@@ -216,6 +221,7 @@
         "force": 25,
         "agilité": 15,
         "intelligence": 20,
+        "img": "imgs/cyborg_du_futur.png",
         "equipements": [
           {
             "nom": "Canon à Plasma",
