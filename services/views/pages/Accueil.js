@@ -74,6 +74,10 @@ export default class Accueil {
                 const images = ["Voleur_de_l'Ombre.png", "mage.png", "soldat_du_nord.png"];
                 const noms = ["Voleur de l'ombre", "Mage élémentaliste", "Soldat du nord"];
                 images.forEach((image, index) => {
+                    // Créer le lien qui contient l'image
+                    const lien = document.createElement('a');
+                    lien.href = `#/personnages/${index + 1}`; // La route vers la page du personnage
+                    
                     // Créer l'image avec lazy loading
                     const img = document.createElement('img');
                     img.src = `../../../imgs/${image}`;
@@ -82,10 +86,8 @@ export default class Accueil {
                     img.loading = 'lazy';
                     img.style.cursor = 'pointer';
 
-                    img.addEventListener('click', () => {
-                        var personnageId = index + 1;
-                        window.location.hash = `/personnages/${personnageId}`;
-                    });
+                    // Ajouter l'image dans le lien
+                    lien.appendChild(img);
 
                     // Créer un paragraphe pour afficher le nom de l'image
                     const p = document.createElement('p');
@@ -95,8 +97,8 @@ export default class Accueil {
                     p.style.fontWeight = 'bold';
                     p.style.marginTop = '5px';
 
-                    listePerso.appendChild(img);
-                    listeLabelPerso.appendChild(p);
+                    listePerso.appendChild(lien);  // Ajouter le lien avec l'image à la liste
+                    listeLabelPerso.appendChild(p); // Ajouter le nom sous l'image
                 });
             } catch (error) {
                 console.error("Erreur lors du chargement des images :", error);
