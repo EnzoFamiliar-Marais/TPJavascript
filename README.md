@@ -110,3 +110,6 @@ Pendant le combat, des objets peuvent apparaître de manière aléatoire. Les jo
 
     Ennemis plus forts : Après chaque victoire, le bot devient plus difficile à battre avec des actions plus stratégiques ou des statistiques améliorées.
     Boss : Tous les 5 combats, un ennemi plus puissant (boss) pourrait apparaître avec des capacités uniques et plus de points de vie.
+
+
+
