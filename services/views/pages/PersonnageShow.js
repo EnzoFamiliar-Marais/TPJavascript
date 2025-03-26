@@ -1,5 +1,6 @@
 import Utils from "../../utils.js";
 import PersonnageProvider from "../../PersonnageProvider.js";
+import FavorisService from "../../FavorisService.js";
 
 export default class PersonnageShow {
     async render() {
@@ -8,6 +9,9 @@ export default class PersonnageShow {
         if (!personnage) {
             return "<h2>Personnage non trouvé</h2>";
         }
+        
+        const isFavori = FavorisService.isFavori(personnage.id);
+        
         let view = `
             <h2>Nom du Personnage : ${personnage.nom}</h2>
             <p>Classe : ${personnage.classe}</p>
@@ -28,7 +32,19 @@ export default class PersonnageShow {
                 <li>${competence.nom} - ${competence.description} ${competence.degats ? `- Dégâts: ${competence.degats}` : `- Effet: ${competence.effet}`}</li>
             `).join('')}
             </ul>
+            <button id="favori-btn" data-id="${personnage.id}">${isFavori ? 'Retirer des favoris' : 'Ajouter aux favoris'}</button>
+            <h4><a href="#/">Retour</a></h4>
         `;
+        
+        // Attacher les événements après le rendu
+        setTimeout(() => {
+            document.getElementById('favori-btn').addEventListener('click', () => {
+                const isAdded = FavorisService.toggleFavori(personnage);
+                const btn = document.getElementById('favori-btn');
+                btn.textContent = isAdded ? 'Retirer des favoris' : 'Ajouter aux favoris';
+            });
+        }, 0);
+        
         return view;
     }
 }
