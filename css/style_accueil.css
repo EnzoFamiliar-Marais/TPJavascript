@@ -65,7 +65,6 @@ body {
 /* Style pour la liste des images de personnages */
 #persoJeu div {
     display: flex;
-    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
