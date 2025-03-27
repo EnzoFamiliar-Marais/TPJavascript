@@ -17,6 +17,7 @@ export default class FavorisService {
         
         if (index !== -1) {
             favoris.splice(index, 1);
+        } else {
             favoris.push(personnage);
         }
         
