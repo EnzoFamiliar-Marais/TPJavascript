@@ -4,18 +4,12 @@ import Utils from '../../utils.js';
 
 export default class CombatPage {
     async render() {
-        // Modification: Méthode améliorée pour récupérer les paramètres d'URL
-        const hash = window.location.hash;
-        let perso1Id = null;
-        let perso2Id = null;
+        // Utiliser getUrlParams de Utils
+        const params = Utils.getUrlParams();
+        const perso1Id = params.get('perso1');
+        const perso2Id = params.get('perso2');
         
-        // Extraction des paramètres depuis le hash
-        if (hash.includes('?')) {
-            const paramsString = hash.split('?')[1];
-            const searchParams = new URLSearchParams(paramsString);
-            perso1Id = searchParams.get('perso1');
-            perso2Id = searchParams.get('perso2');
-        }
+        console.log("IDs récupérés:", perso1Id, perso2Id);
         
         // Récupérer tous les personnages
         const personnages = await PersonnageProvider.getPersonnages(20);
@@ -58,8 +52,19 @@ export default class CombatPage {
     }
     
     renderPerso2Selection(personnages, perso1Id) {
-        const perso1 = personnages.find(p => p.id === perso1Id);
-        const adversaires = personnages.filter(p => p.id !== perso1Id);
+        // Correction: Comparer les IDs en tant que chaînes pour éviter des problèmes de type
+        const perso1 = personnages.find(p => String(p.id) === String(perso1Id));
+        
+        if (!perso1) {
+            return `
+                <h2>Erreur: Personnage non trouvé</h2>
+                <p>ID: ${perso1Id}</p>
+                <a href="#/combat">Retour à la sélection</a>
+            `;
+        }
+        
+        // Correction: Filtrer avec la même méthode de comparaison
+        const adversaires = personnages.filter(p => String(p.id) !== String(perso1Id));
         
         return `
             <div class="container">
@@ -95,12 +100,13 @@ export default class CombatPage {
     }
     
     async renderCombatView(personnages, perso1Id, perso2Id) {
-        // Récupérer les personnages complets
+        // Correction: Utiliser les IDs directement pour récupérer les personnages
         const perso1 = await PersonnageProvider.getPersonnage(perso1Id);
         const perso2 = await PersonnageProvider.getPersonnage(perso2Id);
         
         if (!perso1 || !perso2) {
             return `<h2>Erreur: Un des personnages n'a pas été trouvé</h2>
+                    <p>IDs: ${perso1Id}, ${perso2Id}</p>
                     <a href="#/combat">Retour à la sélection</a>`;
         }
         
@@ -167,27 +173,22 @@ export default class CombatPage {
     }
     
     async after_render() {
-        // Modification: Même méthode pour récupérer les paramètres depuis le hash
-        const hash = window.location.hash;
-        let perso1Id = null;
-        let perso2Id = null;
-        
-        if (hash.includes('?')) {
-            const paramsString = hash.split('?')[1];
-            const searchParams = new URLSearchParams(paramsString);
-            perso1Id = searchParams.get('perso1');
-            perso2Id = searchParams.get('perso2');
-        }
+        // Utiliser Utils pour récupérer les paramètres
+        const params = Utils.getUrlParams();
+        const perso1Id = params.get('perso1');
+        const perso2Id = params.get('perso2');
         
         if (perso1Id && perso2Id) {
             const perso1 = await PersonnageProvider.getPersonnage(perso1Id);
             const perso2 = await PersonnageProvider.getPersonnage(perso2Id);
             
-            const startButton = document.getElementById('start-combat');
-            if (startButton) {
-                startButton.addEventListener('click', () => {
-                    this.startCombat(perso1, perso2);
-                });
+            if (perso1 && perso2) {
+                const startButton = document.getElementById('start-combat');
+                if (startButton) {
+                    startButton.addEventListener('click', () => {
+                        this.startCombat(perso1, perso2);
+                    });
+                }
             }
         }
     }
@@ -197,36 +198,30 @@ export default class CombatPage {
         const pvPerso1 = document.getElementById('pv-perso1');
         const pvPerso2 = document.getElementById('pv-perso2');
         
-        // Désactiver le bouton de combat
         document.getElementById('start-combat').disabled = true;
         
-        // Simuler le combat
         const result = await CombatService.simulerCombat(perso1, perso2);
         
-        // Afficher les logs et mettre à jour les PV au fur et à mesure
+        // mets àjour les PV et les logs
         for (let i = 0; i < result.logs.length; i++) {
-            await new Promise(resolve => setTimeout(resolve, 1000)); // Délai pour la visualisation
+            await new Promise(resolve => setTimeout(resolve, 1000)); 
             
-            // Ajouter le log
             const log = document.createElement('p');
             log.textContent = result.logs[i];
             logContainer.appendChild(log);
             logContainer.scrollTop = logContainer.scrollHeight;
             
-            // Mettre à jour les PV
             if (result.pvParTour && result.pvParTour[i]) {
                 pvPerso1.textContent = result.pvParTour[i].pv1;
                 pvPerso2.textContent = result.pvParTour[i].pv2;
             }
         }
         
-        // Afficher le résultat final
         const resultatFinal = document.createElement('h3');
         resultatFinal.className = 'resultat-final';
         resultatFinal.textContent = `Vainqueur: ${result.vainqueur.nom}!`;
         logContainer.appendChild(resultatFinal);
         
-        // Réactiver le bouton pour rejouer
         document.getElementById('start-combat').disabled = false;
         document.getElementById('start-combat').textContent = "Rejouer";
     }
