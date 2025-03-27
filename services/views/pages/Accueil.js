@@ -119,9 +119,11 @@ export default class Accueil {
         }
 
         // Création du bouton "Combat"
-        const boutonCombat = document.createElement('button');
+        const boutonCombat = document.createElement('a');
         boutonCombat.textContent = 'Jouer';
+        boutonCombat.href = '#/combat'
         boutonCombat.id = 'boutonCombat';
+        boutonCombat.style.textDecoration = 'none';
 
         await chargerImages(); // Charger les images et leurs noms
 
