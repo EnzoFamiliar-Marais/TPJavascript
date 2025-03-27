@@ -4,6 +4,11 @@ import Utils from '../../utils.js';
 
 export default class CombatPage {
     async render() {
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = '../../../css/style_combat.css';
+        document.head.appendChild(cssLink);
+
         // Utiliser getUrlParams de Utils
         const params = Utils.getUrlParams();
         const perso1Id = params.get('perso1');
@@ -103,17 +108,19 @@ export default class CombatPage {
         // Correction: Utiliser les IDs directement pour récupérer les personnages
         const perso1 = await PersonnageProvider.getPersonnage(perso1Id);
         const perso2 = await PersonnageProvider.getPersonnage(perso2Id);
-        
+    
         if (!perso1 || !perso2) {
             return `<h2>Erreur: Un des personnages n'a pas été trouvé</h2>
                     <p>IDs: ${perso1Id}, ${perso2Id}</p>
                     <a href="#/combat">Retour à la sélection</a>`;
         }
-        
+    
         return `
             <div class="container combat-arena">
                 <h1>Combat</h1>
-                <div class="combattants">
+    
+                <!-- Nouvelle div pour contenir les combattants et le log -->
+                <div class="combat-content">
                     <div class="combattant perso1">
                         <h2>${perso1.nom}</h2>
                         <p>Classe: ${perso1.classe} | Niveau: ${perso1.niveau}</p>
@@ -136,13 +143,12 @@ export default class CombatPage {
                             </ul>
                         </div>
                     </div>
-                    
+    
                     <div class="combat-log">
                         <h3>Combat Log</h3>
                         <div id="log-container"></div>
-                        <button id="start-combat" class="btn-fight">Lancer le combat</button>
                     </div>
-                    
+    
                     <div class="combattant perso2">
                         <h2>${perso2.nom}</h2>
                         <p>Classe: ${perso2.classe} | Niveau: ${perso2.niveau}</p>
@@ -166,11 +172,12 @@ export default class CombatPage {
                         </div>
                     </div>
                 </div>
-                
+    
+                <button id="start-combat" class="btn-fight">Lancer le combat</button>
                 <a href="#/combat" class="btn-back">Retour à la sélection</a>
             </div>
         `;
-    }
+    }    
     
     async after_render() {
         // Utiliser Utils pour récupérer les paramètres

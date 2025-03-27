@@ -95,7 +95,6 @@ export default class Accueil {
                     listeLabelPerso.appendChild(p);
 
                     const isFavori = FavorisService.isFavori(perso['id']);
-                    console.log(isFavori);
                     if (isFavori) {
                         const heart = document.createElement('span');
                         heart.textContent = '❤️';
