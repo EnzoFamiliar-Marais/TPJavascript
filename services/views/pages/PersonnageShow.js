@@ -23,7 +23,11 @@ export default class PersonnageShow {
             <h3>Équipements :</h3>
             <ul>
             ${personnage.equipements.map(equipement => `
-                <li>${equipement.nom} (${equipement.type}) - ${equipement.type === 'arme' ? `Dégâts: ${equipement.degats}` : `Défense: ${equipement.defense}`}</li>
+                <li>${equipement.nom} (${equipement.type}) - ${
+                    equipement.type === 'arme' 
+                        ? `Dégâts: ${equipement.degats || equipement.degats_magiques || "Non spécifié"}`
+                        : `Défense: ${equipement.defense || equipement.effet || "Non spécifié"}`
+                }</li>
             `).join('')}
             </ul>
             <h3>Compétences :</h3>
@@ -36,7 +40,6 @@ export default class PersonnageShow {
             <h4><a href="#/">Retour</a></h4>
         `;
         
-        // Attacher les événements après le rendu
         setTimeout(() => {
             document.getElementById('favori-btn').addEventListener('click', () => {
                 const isAdded = FavorisService.toggleFavori(personnage);
