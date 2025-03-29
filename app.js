@@ -3,6 +3,7 @@ import PersonnagesAll from './services/views/pages/AllPerso.js';
 import PersonnageShow from './services/views/pages/PersonnageShow.js';
 import FavorisPage from './services/views/pages/FavorisPage.js';
 import CombatPage from './services/views/pages/CombatPage.js';
+import PersonnageAdd from './services/views/pages/PersonnageAdd.js';
 
 const routes = {
     '/': PersonnagesAll,
@@ -10,6 +11,7 @@ const routes = {
     '/personnages/:id': PersonnageShow,
     '/favoris': FavorisPage,
     '/combat': CombatPage,
+    "/personnage/add": PersonnageAdd,
 };
 
 const Error404 = {

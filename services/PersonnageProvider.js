@@ -60,5 +60,24 @@ export default class PersonnageProvider {
         }
     }
 
+    static addPersonnage = async (personnage) => {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(personnage)
+        };
+        try {
+            const response = await fetch(`${ENDPOINT}/personnages`, options);
+            if (!response.ok) {
+                throw new Error("Erreur lors de l'ajout du personnage");
+            }
+            const newPersonnage = await response.json();
+            return newPersonnage;
+        } catch (error) {
+            console.error("Erreur lors de l'ajout du personnage :", error);
+        }
+    }
 }
 
