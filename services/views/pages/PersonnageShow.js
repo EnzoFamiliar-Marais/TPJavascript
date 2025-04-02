@@ -11,6 +11,8 @@ export default class PersonnageShow {
 
         let request = Utils.parseRequestURL();
         let personnage = await PersonnageProvider.getPersonnage(request.id);
+        console.log(personnage);
+
         if (!personnage) {
             return "<h2>Personnage non trouvé</h2>";
         }
