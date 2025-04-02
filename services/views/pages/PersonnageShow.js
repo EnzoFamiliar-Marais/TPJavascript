@@ -4,6 +4,11 @@ import FavorisService from "../../FavorisService.js";
 
 export default class PersonnageShow {
     async render() {
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = '../../../css/style_personnage.css'; // Le chemin vers le fichier CSS
+        document.head.appendChild(cssLink);
+
         let request = Utils.parseRequestURL();
         let personnage = await PersonnageProvider.getPersonnage(request.id);
         if (!personnage) {

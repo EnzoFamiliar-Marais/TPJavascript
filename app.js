@@ -1,11 +1,12 @@
 import Utils from './services/utils.js';
-import PersonnagesAll from './services/views/pages/AllPerso.js';
+import PersonnagesAll from './services/views/pages/PersonnagesAll.js';
 import PersonnageShow from './services/views/pages/PersonnageShow.js';
+import Accueil from './services/views/pages/Accueil.js'
 import FavorisPage from './services/views/pages/FavorisPage.js';
 import CombatPage from './services/views/pages/CombatPage.js';
 
 const routes = {
-    '/': PersonnagesAll,
+    '/': Accueil,
     '/personnages': PersonnagesAll,
     '/personnages/:id': PersonnageShow,
     '/favoris': FavorisPage,
