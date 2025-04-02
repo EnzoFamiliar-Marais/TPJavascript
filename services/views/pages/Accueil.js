@@ -1,8 +1,9 @@
-import FavorisService from "../../FavorisService.js";  // Importation de FavorisService
+import FavorisService from "../../FavorisService.js";  
 import PersonnageProvider from "../../PersonnageProvider.js";
 
 export default class Accueil {
     async render() {
+        // Ajout du fichier CSS
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
         cssLink.href = '../../../css/style_accueil.css';
@@ -24,7 +25,6 @@ export default class Accueil {
         contenuDoc.textContent = 'Bienvenue dans notre jeu de rôle au tour par tour ! Voici un bref aperçu du jeu :';
 
         const listeDoc = document.createElement('ul');
-
         const elementDoc1 = document.createElement('li');
         elementDoc1.textContent = `
         1. Choix des classes : 
@@ -54,6 +54,7 @@ export default class Accueil {
         documentationJeu.appendChild(contenuDoc);
         documentationJeu.appendChild(listeDoc);
 
+        // Section des personnages
         const persoJeu = document.createElement('div');
         persoJeu.id = "persoJeu";
 
@@ -61,12 +62,10 @@ export default class Accueil {
         titrePerso.textContent = 'Personnages';
 
         const listePerso = document.createElement('div');
-        listePerso.style.display = 'flex';
-        listePerso.style.gap = '10px';
+        listePerso.id = "listePerso";
 
         const listeLabelPerso = document.createElement('div');
-        listeLabelPerso.style.display = 'flex';
-        listeLabelPerso.style.gap = '10px';  
+        listeLabelPerso.id = "listeLabelPerso";  
 
         async function chargerImages() {
             try {
@@ -80,16 +79,10 @@ export default class Accueil {
                     img.id = 'perso';
                     img.src = perso['img'];
                     img.alt = perso['nom'];
-                    img.style.display = 'block';
-                    img.loading = 'lazy';
-                    img.style.cursor = 'pointer';
+                    img.loading = "lazy";
 
                     const p = document.createElement('p');
                     p.textContent = perso['nom'];
-                    p.style.textAlign = 'center';
-                    p.style.fontSize = '14px';
-                    p.style.fontWeight = 'bold';
-                    p.style.marginTop = '5px';
 
                     listePerso.appendChild(lien);
                     listeLabelPerso.appendChild(p);
@@ -98,8 +91,7 @@ export default class Accueil {
                     if (isFavori) {
                         const heart = document.createElement('span');
                         heart.textContent = '❤️';
-                        heart.style.fontSize = '20px';
-                        heart.style.marginLeft = '10px'; 
+                        heart.classList.add('favori');
                         lien.appendChild(heart);
                     }
                     lien.appendChild(img);
@@ -109,18 +101,22 @@ export default class Accueil {
             }
         }
 
+        // Bouton de combat
         const boutonCombat = document.createElement('a');
         boutonCombat.textContent = 'Jouer';
-        boutonCombat.href = '#/combat'
+        boutonCombat.href = '#/combat';
         boutonCombat.id = 'boutonCombat';
-        boutonCombat.style.textDecoration = 'none';
+
+        const combatContainer = document.createElement('div');
+        combatContainer.id = 'combatContainer';
+        combatContainer.appendChild(boutonCombat);
 
         await chargerImages();
 
         persoJeu.appendChild(titrePerso);
         persoJeu.appendChild(listePerso);
         persoJeu.appendChild(listeLabelPerso); 
-        persoJeu.appendChild(boutonCombat);
+        persoJeu.appendChild(combatContainer);
 
         documentationJeu.appendChild(persoJeu);
 
