@@ -173,9 +173,8 @@ export default class CombatPage {
                             </div>
                         </div>
                     </div>
-                    
-                    <a href="#/combat" class="btn-back">Retour à la sélection</a>
                 </div>
+                <a href="#/combat" class="btn-back">Retour à la sélection</a>
             `;
         } catch (error) {
             console.error("Erreur lors du chargement des personnages:", error);
