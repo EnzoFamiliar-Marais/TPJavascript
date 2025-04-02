@@ -3,10 +3,9 @@ import PersonnageProvider from "../../PersonnageProvider.js";
 
 export default class Accueil {
     async render() {
-        // Charger le fichier CSS dynamiquement
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
-        cssLink.href = '../../../css/style_accueil.css'; // Le chemin vers le fichier CSS
+        cssLink.href = '../../../css/style_accueil.css';
         document.head.appendChild(cssLink);
 
         // Création de la documentation du jeu
@@ -16,7 +15,7 @@ export default class Accueil {
         const banniere = document.createElement('img');
         banniere.src = `../../../imgs/Banniere.png`;
         banniere.alt = "image";
-        banniere.loading = "lazy";  // Lazy loading pour optimiser le chargement de la bannière
+        banniere.loading = "lazy";
 
         const titreDoc = document.createElement('h2');
         titreDoc.textContent = 'Guide du joueur';
@@ -46,7 +45,6 @@ export default class Accueil {
             - Pendant le combat, ramassez des objets pour améliorer vos statistiques et capacités.
         `;
 
-        // Ajout des éléments à la documentation
         listeDoc.appendChild(elementDoc1);
         listeDoc.appendChild(elementDoc2);
         listeDoc.appendChild(elementDoc3);
@@ -56,7 +54,6 @@ export default class Accueil {
         documentationJeu.appendChild(contenuDoc);
         documentationJeu.appendChild(listeDoc);
 
-        // Ajout de la section des personnages
         const persoJeu = document.createElement('div');
         persoJeu.id = "persoJeu";
 
@@ -71,26 +68,22 @@ export default class Accueil {
         listeLabelPerso.style.display = 'flex';
         listeLabelPerso.style.gap = '10px';  
 
-        // Fonction pour charger dynamiquement les images et les noms
         async function chargerImages() {
             try {
                 const persos = await PersonnageProvider.getPersonnages(6);
                 persos.forEach(perso => {
-                    // Créer le lien qui contient l'image
                     const lien = document.createElement('a');
-                    lien.href = `#/personnages/${perso['id']}`; // La route vers la page du personnage
+                    lien.href = `#/personnages/${perso['id']}`;
                     lien.style.textDecoration = 'none';
                     
-                    // Créer l'image avec lazy loading
                     const img = document.createElement('img');
                     img.id = 'perso';
-                    img.src = perso['img'];  // Assure-toi d'utiliser une vraie URL d'image
+                    img.src = perso['img'];
                     img.alt = perso['nom'];
                     img.style.display = 'block';
                     img.loading = 'lazy';
                     img.style.cursor = 'pointer';
 
-                    // Créer un paragraphe pour afficher le nom de l'image
                     const p = document.createElement('p');
                     p.textContent = perso['nom'];
                     p.style.textAlign = 'center';
@@ -98,37 +91,34 @@ export default class Accueil {
                     p.style.fontWeight = 'bold';
                     p.style.marginTop = '5px';
 
-                    listePerso.appendChild(lien);  // Ajouter le lien avec l'image à la liste
-                    listeLabelPerso.appendChild(p); // Ajouter le nom sous l'image
+                    listePerso.appendChild(lien);
+                    listeLabelPerso.appendChild(p);
 
-                    // Vérification si le personnage est favori
                     const isFavori = FavorisService.isFavori(perso['id']);
                     if (isFavori) {
-                        // Ajouter un cœur si le personnage est favori
                         const heart = document.createElement('span');
-                        heart.textContent = '❤️'; // Symbole de cœur
+                        heart.textContent = '❤️';
                         heart.style.fontSize = '20px';
-                        heart.style.marginLeft = '10px'; // Espacement entre l'image et le cœur
+                        heart.style.marginLeft = '10px'; 
                         lien.appendChild(heart);
                     }
-                    lien.appendChild(img); // Ajouter l'image dans le lien
+                    lien.appendChild(img);
                 });
             } catch (error) {
                 console.error("Erreur lors du chargement des images :", error);
             }
         }
 
-        // Création du bouton "Combat"
         const boutonCombat = document.createElement('a');
         boutonCombat.textContent = 'Jouer';
         boutonCombat.href = '#/combat'
         boutonCombat.id = 'boutonCombat';
         boutonCombat.style.textDecoration = 'none';
 
-        await chargerImages(); // Charger les images et leurs noms
+        await chargerImages();
 
         persoJeu.appendChild(titrePerso);
-        persoJeu.appendChild(listePerso); // Ajouter la liste des personnages
+        persoJeu.appendChild(listePerso);
         persoJeu.appendChild(listeLabelPerso); 
         persoJeu.appendChild(boutonCombat);
 

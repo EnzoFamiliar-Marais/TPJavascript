@@ -4,6 +4,12 @@ import Utils from '../../utils.js';
 
 export default class CombatPage {
     async render() {
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = '../../../css/style_combat.css';
+        document.head.appendChild(cssLink);
+
+        // Utiliser getUrlParams de Utils
         const params = Utils.getUrlParams();
         const perso1Id = params.get('perso1');
         const perso2Id = params.get('perso2');
