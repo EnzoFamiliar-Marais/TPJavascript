@@ -16,11 +16,10 @@ export default class CombatService {
     }
     
     static calculerDegats(attaquant, defenseur, competence) {
-        // Base de dégâts: dégâts de compétence + modificateur de force
         let degatsBase = competence.degats || 0;
         degatsBase += Math.floor(attaquant.force * 0.5);
         
-        // Calcul de la défense
+        // enlever la défense de l'
         let defense = 0;
         if (defenseur.equipements) {
             defense = defenseur.equipements
@@ -28,10 +27,8 @@ export default class CombatService {
                 .reduce((total, eq) => total + eq.defense, 0);
         }
         
-        // Réduction des dégâts par la défense (minimum 1)
         const degatsFinaux = Math.max(1, degatsBase - defense);
         
-        // Chance de coup critique basée sur l'agilité
         const chanceCritique = Math.min(0.05 + (attaquant.agilité / 100), 0.25); // max 25%
         const estCritique = Math.random() < chanceCritique;
         
@@ -42,11 +39,9 @@ export default class CombatService {
     }
     
     static choisirCompetenceAleatoire(personnage) {
-        // Préférer les compétences offensives
         const competencesOffensives = personnage.competences.filter(c => c.degats && c.degats > 0);
         
         if (competencesOffensives.length === 0) {
-            // Attaque par défaut si pas de compétence offensive
             return {
                 id: 'basic',
                 nom: "Attaque basique",
