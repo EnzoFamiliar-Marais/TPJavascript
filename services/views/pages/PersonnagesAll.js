@@ -4,6 +4,11 @@ import FormulaireAdd from "../../FormulaireAdd.js";
 
 export default class PersonnagesAll {
     async render() {
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = '../../../css/style_perso_all.css';
+        document.head.appendChild(cssLink);
+
         let personnages = await PersonnageProvider.getPersonnages(20);
         let view = `
             <div class="personnages-container">

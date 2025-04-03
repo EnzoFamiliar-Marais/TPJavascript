@@ -1,0 +1,105 @@
+/* Style global pour la page des personnages */
+.personnages-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* En-tête */
+.personnages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.personnages-header h2 {
+    color: #007BFF;
+}
+
+/* Bouton ajouter */
+.btn-add {
+    padding: 8px 12px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-add:hover {
+    background: #218838;
+}
+
+/* Barre de recherche */
+#search {
+    width: calc(100% - 100px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#searchButton {
+    padding: 8px 12px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#searchButton:hover {
+    background: #0056b3;
+}
+
+/* Liste des personnages */
+.personnages-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.personnage-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.personnage-nom {
+    font-weight: bold;
+    color: #333;
+}
+
+.personnage-classe {
+    font-style: italic;
+    color: #666;
+}
+
+.personnage-niveau {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+/* Bouton Voir */
+.btn-view {
+    padding: 5px 10px;
+    background: #ffc107;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-view:hover {
+    background: #e0a800;
+}
