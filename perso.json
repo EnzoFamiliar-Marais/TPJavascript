@@ -205,48 +205,6 @@
           "force": 10
         }
       }
-    },
-    {
-      "id": "bb6f",
-      "nom": "freerhg",
-      "classe": "Voleur",
-      "niveau": 5,
-      "points_de_vie": 130,
-      "force": 10,
-      "agilité": 10,
-      "intelligence": 10,
-      "equipement_ids": [
-        2,
-        4
-      ],
-      "competences": [
-        {
-          "nom": "Prout",
-          "description": "Etourdit",
-          "effet": "10"
-        }
-      ]
-    },
-    {
-      "id": "a7bd",
-      "nom": "llll",
-      "classe": "Guerrier",
-      "niveau": 12,
-      "points_de_vie": 130,
-      "force": 101,
-      "agilité": 10,
-      "intelligence": 10,
-      "equipement_ids": [
-        7,
-        12
-      ],
-      "competences": [
-        {
-          "nom": "Eblouissement",
-          "description": "Ebloui l'adversaire",
-          "effet": "20"
-        }
-      ]
     }
   ],
   "equipements": [
