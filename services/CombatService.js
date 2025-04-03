@@ -149,10 +149,11 @@ export default class CombatService {
         
         try {
             // Augmenter les statistiques du personnage
+            personnage.niveau += 1;
             personnage.points_de_vie += 5;
             personnage.force += 1;
             
-            console.log(`Personnage ${personnage.nom} amélioré! +5 PV, +1 Force`);
+            console.log(`Personnage ${personnage.nom} amélioré! +5 PV, +1 Force, +1 Niveau`);
             
             // Envoyer la mise à jour au serveur
             const options = {
@@ -206,7 +207,7 @@ export default class CombatService {
                     if (startButton) {
                         startButton.addEventListener('click', () => {
                             console.log("Début du combat entre", perso1.nom, "et", perso2.nom);
-                            this.startCombatUI(perso1, perso2);
+                            this.startCombatInterface(perso1, perso2);
                         });
                     } else {
                         console.error("Bouton de combat non trouvé");
@@ -220,7 +221,7 @@ export default class CombatService {
         }
     }
     
-    static async startCombatUI(perso1, perso2) {
+    static async startCombatInterface(perso1, perso2) {
         try {
             const logContainer = document.getElementById('log-container');
             const pvPerso1 = document.getElementById('pv-perso1');
