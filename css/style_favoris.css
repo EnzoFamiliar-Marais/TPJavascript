@@ -1,61 +1,101 @@
-/* Style général */
-h2 {
-    color: #007BFF; /* Bleu pour le titre */
+/* Conteneur principal */
+.favoris-container {
+    max-width: 600px;
+    margin: 20px auto; /* Ajout de marge autour du conteneur */
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-p {
-    color: #333; /* Couleur neutre pour le texte descriptif */
+/* Titre */
+.favoris-title {
+    color: #007BFF;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Texte quand il n'y a pas de favoris */
+.favoris-empty {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px; /* Ajout de marge sous le texte */
 }
 
 /* Liste des favoris */
-ul {
+.favoris-list {
     list-style-type: none;
     padding: 0;
 }
 
-li {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #007BFF; /* Bordure bleue pour chaque favori */
+.favoris-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0; /* Augmentation de la marge verticale */
+    padding: 15px; /* Légèrement plus d’espace interne */
+    border: 1px solid #007BFF;
     border-radius: 8px;
-    background-color: #f0f8ff; /* Fond bleu clair */
+    background-color: #f0f8ff;
+    transition: transform 0.2s ease-in-out;
+}
+
+.favoris-item:hover {
+    transform: scale(1.02);
+}
+
+/* Nom du personnage */
+.favoris-name {
+    font-weight: bold;
+    color: #333;
+    margin: 20px;
 }
 
 /* Liens */
-a {
-    color: #007BFF; /* Bleu pour les liens */
+.favoris-link {
+    color: #007BFF;
     text-decoration: none;
+    font-weight: bold;
+    margin-right: 20px; /* Espacement entre le lien et le bouton */
 }
 
-a:hover {
+.favoris-link:hover {
     text-decoration: underline;
 }
 
 /* Bouton pour retirer un favori */
-button.remove-favori {
-    background-color: #0056b3; /* Bleu plus foncé pour le bouton */
-    color: #fff;
+.favoris-remove {
+    background-color: #d9534f;
+    color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 8px 12px; /* Légèrement plus grand */
     cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    margin-right: 10px;
 }
 
-button.remove-favori:hover {
-    background-color: #003d82; /* Changement de teinte au survol */
+.favoris-remove:hover {
+    background-color: #c9302c;
 }
 
-/* Retour à l'accueil */
-a[href="#/"] {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
+/* Bouton de retour */
+.favoris-home {
+    display: block;
+    text-align: center;
+    margin: 30px auto 0; /* Ajout d’un grand espace au-dessus */
+    padding: 12px 18px;
     background-color: #007BFF;
-    color: #fff;
+    color: white;
     border-radius: 5px;
     text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s ease-in-out;
+    width: fit-content;
 }
 
-a[href="#/"]:hover {
+.favoris-home:hover {
     background-color: #0056b3;
 }
