@@ -104,7 +104,7 @@ export default class CombatPage {
     
     async renderCombatView(perso1Id, perso2Id) {
         try {
-            // Récupérer directement les personnages par leurs IDs
+            // recuperer les personnages avec leurs ID
             const perso1 = await PersonnageProvider.getPersonnage(perso1Id);
             const perso2 = await PersonnageProvider.getPersonnage(perso2Id);
             
@@ -185,84 +185,7 @@ export default class CombatPage {
     }
     
     async after_render() {
-        try {
-            const params = Utils.getUrlParams();
-            const perso1Id = params.get('perso1');
-            const perso2Id = params.get('perso2');
-            
-            console.log("after_render - IDs:", perso1Id, perso2Id);
-            
-            if (perso1Id && perso2Id) {
-                const perso1 = await PersonnageProvider.getPersonnage(perso1Id);
-                const perso2 = await PersonnageProvider.getPersonnage(perso2Id);
-                
-                if (perso1 && perso2) {
-                    const startButton = document.getElementById('start-combat');
-                    console.log("Bouton de combat:", startButton);
-                    
-                    if (startButton) {
-                        startButton.addEventListener('click', () => {
-                            console.log("Début du combat entre", perso1.nom, "et", perso2.nom);
-                            this.startCombat(perso1, perso2);
-                        });
-                    } else {
-                        console.error("Bouton de combat non trouvé");
-                    }
-                } else {
-                    console.error("Personnages non trouvés:", perso1, perso2);
-                }
-            }
-        } catch (error) {
-            console.error("Erreur dans after_render:", error);
-        }
-    }
-    
-    async startCombat(perso1, perso2) {
-        try {
-            const logContainer = document.getElementById('log-container');
-            const pvPerso1 = document.getElementById('pv-perso1');
-            const pvPerso2 = document.getElementById('pv-perso2');
-            
-            if (!logContainer || !pvPerso1 || !pvPerso2) {
-                console.error("Éléments du DOM manquants");
-                return;
-            }
-            
-            logContainer.innerHTML = '';
-            
-            document.getElementById('start-combat').disabled = true;
-            
-            const result = await CombatService.simulerCombat(perso1, perso2);
-            console.log("Résultat du combat:", result);
-            
-            for (let i = 0; i < result.logs.length; i++) {
-                await new Promise(resolve => setTimeout(resolve, 500)); 
-                
-                const log = document.createElement('p');
-                log.textContent = result.logs[i];
-                logContainer.appendChild(log);
-                logContainer.scrollTop = logContainer.scrollHeight;
-                
-                if (result.pvParTour && result.pvParTour[i]) {
-                    pvPerso1.textContent = result.pvParTour[i].pv1;
-                    pvPerso2.textContent = result.pvParTour[i].pv2;
-                }
-            }
-            
-            const resultatFinal = document.createElement('h3');
-            resultatFinal.className = 'resultat-final';
-            resultatFinal.textContent = `Vainqueur: ${result.vainqueur.nom}!`;
-            logContainer.appendChild(resultatFinal);
-            
-            document.getElementById('start-combat').disabled = false;
-            document.getElementById('start-combat').textContent = "Rejouer";
-        } catch (error) {
-            console.error("Erreur pendant le combat:", error);
-            const logContainer = document.getElementById('log-container');
-            if (logContainer) {
-                logContainer.innerHTML = `<p class="error">Erreur pendant le combat: ${error.message}</p>`;
-            }
-            document.getElementById('start-combat').disabled = false;
-        }
+        const params = Utils.getUrlParams(); // Récupérer les paramètres de l'URL
+        await CombatService.AfterRender(params); // donne les paramètres à la fonction AfterRender 
     }
 }
