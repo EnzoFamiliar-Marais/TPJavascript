@@ -1,0 +1,308 @@
+{
+  "personnages": [
+    {
+      "id": "1",
+      "nom": "Guerrier du Nord",
+      "classe": "Guerrier",
+      "niveau": 5,
+      "points_de_vie": 150,
+      "force": 20,
+      "agilité": 10,
+      "intelligence": 5,
+      "img": "imgs/soldat_du_nord.png",
+      "equipement_ids": [
+        1,
+        2
+      ],
+      "competences": [
+        {
+          "nom": "Coup puissant",
+          "description": "Frappe l'ennemi avec une force dévastatrice",
+          "degats": 50
+        },
+        {
+          "nom": "Charge",
+          "description": "Charge vers l'ennemi et le renverse",
+          "effet": "étourdit pendant 2 secondes"
+        }
+      ],
+      "evolution": {
+        "niveau_suivant": 6,
+        "bonus": {
+          "points_de_vie": 20,
+          "force": 5
+        }
+      }
+    },
+    {
+      "id": "2",
+      "nom": "Mage Élémentaire",
+      "classe": "Mage",
+      "niveau": 5,
+      "points_de_vie": 100,
+      "force": 5,
+      "agilité": 10,
+      "intelligence": 25,
+      "img": "imgs/mage.png",
+      "equipement_ids": [
+        3,
+        4
+      ],
+      "competences": [
+        {
+          "nom": "Boule de feu",
+          "description": "Projette une boule de feu qui explose à l'impact",
+          "degats": 60
+        },
+        {
+          "nom": "Blizzard",
+          "description": "Gèle les ennemis autour",
+          "effet": "ralentit de 50% pendant 3 secondes"
+        }
+      ],
+      "evolution": {
+        "niveau_suivant": 6,
+        "bonus": {
+          "points_de_vie": 10,
+          "intelligence": 7
+        }
+      }
+    },
+    {
+      "id": "3",
+      "nom": "Voleur de l'Ombre",
+      "classe": "Voleur",
+      "niveau": 5,
+      "points_de_vie": 120,
+      "force": 15,
+      "agilité": 25,
+      "intelligence": 10,
+      "img": "imgs/voleur_ombre.png",
+      "equipement_ids": [
+        5,
+        6
+      ],
+      "competences": [
+        {
+          "nom": "Attaque sournoise",
+          "description": "Frappe l'ennemi dans le dos pour des dégâts accrus",
+          "degats": 50
+        },
+        {
+          "nom": "Disparition",
+          "description": "Devient invisible pendant 5 secondes",
+          "effet": "esquive tous les coups"
+        }
+      ],
+      "evolution": {
+        "niveau_suivant": 6,
+        "bonus": {
+          "points_de_vie": 15,
+          "agilité": 5
+        }
+      }
+    },
+    {
+      "id": "4",
+      "nom": "Archer Elfique",
+      "classe": "Archer",
+      "niveau": 5,
+      "points_de_vie": 130,
+      "force": 15,
+      "agilité": 20,
+      "intelligence": 15,
+      "img": "imgs/archer_elfique.png",
+      "equipement_ids": [
+        7,
+        8
+      ],
+      "competences": [
+        {
+          "nom": "Flèche Empoisonnée",
+          "description": "Inflige des dégâts sur la durée",
+          "degats": 20,
+          "effet": "poison pendant 5 secondes"
+        },
+        {
+          "nom": "Pluie de Flèches",
+          "description": "Tire plusieurs flèches en même temps",
+          "degats": 40
+        }
+      ],
+      "evolution": {
+        "niveau_suivant": 6,
+        "bonus": {
+          "points_de_vie": 10,
+          "agilité": 7
+        }
+      }
+    },
+    {
+      "id": "5",
+      "nom": "Nécromancien Maudit",
+      "classe": "Nécromancien",
+      "niveau": 5,
+      "points_de_vie": 110,
+      "force": 10,
+      "agilité": 10,
+      "intelligence": 30,
+      "img": "imgs/necromancien_maudit.png",
+      "equipement_ids": [
+        9,
+        10
+      ],
+      "competences": [
+        {
+          "nom": "Invocation de Squelettes",
+          "description": "Invoque des squelettes pour combattre à ses côtés",
+          "effet": "3 squelettes invoqués"
+        },
+        {
+          "nom": "Drain de Vie",
+          "description": "Aspire la vie de l'ennemi",
+          "degats": 40,
+          "soins": 20
+        }
+      ],
+      "evolution": {
+        "niveau_suivant": 6,
+        "bonus": {
+          "points_de_vie": 15,
+          "intelligence": 10
+        }
+      }
+    },
+    {
+      "id": "6",
+      "nom": "Cyborg du Futur",
+      "classe": "Cyborg",
+      "niveau": 5,
+      "points_de_vie": 170,
+      "force": 25,
+      "agilité": 15,
+      "intelligence": 20,
+      "img": "imgs/cyborg_du_futur.png",
+      "equipement_ids": [
+        11,
+        12
+      ],
+      "competences": [
+        {
+          "nom": "Laser surchargé",
+          "description": "Tire un laser puissant",
+          "degats": 60
+        },
+        {
+          "nom": "Champ de Force",
+          "description": "Active un bouclier protecteur",
+          "effet": "absorbe 50% des dégâts pendant 5 secondes"
+        }
+      ],
+      "evolution": {
+        "niveau_suivant": 6,
+        "bonus": {
+          "points_de_vie": 20,
+          "force": 10
+        }
+      }
+    }
+  ],
+  "equipements": [
+    {
+      "id": "1",
+      "nom": "Épée Lourde",
+      "type": "arme",
+      "degats": 30,
+      "personnage_id": 1,
+      "rarete": "commun"
+    },
+    {
+      "id": "2",
+      "nom": "Armure de Fer",
+      "type": "armure",
+      "defense": 20,
+      "personnage_id": 1,
+      "rarete": "commun"
+    },
+    {
+      "id": "3",
+      "nom": "Bâton de Feu",
+      "type": "arme",
+      "degats_magiques": 40,
+      "personnage_id": 2,
+      "rarete": "rare"
+    },
+    {
+      "id": "4",
+      "nom": "Robe Mystique",
+      "type": "armure",
+      "defense": 10,
+      "personnage_id": 2,
+      "rarete": "rare"
+    },
+    {
+      "id": "5",
+      "nom": "Dagues Enchantées",
+      "type": "arme",
+      "degats": 25,
+      "personnage_id": 3,
+      "rarete": "rare"
+    },
+    {
+      "id": "6",
+      "nom": "Cape d'Invisibilité",
+      "type": "armure",
+      "effet": "augmente l'esquive de 20%",
+      "personnage_id": 3,
+      "rarete": "épique"
+    },
+    {
+      "id": "7",
+      "nom": "Arc Long",
+      "type": "arme",
+      "degats": 35,
+      "personnage_id": 4,
+      "rarete": "commun"
+    },
+    {
+      "id": "8",
+      "nom": "Armure de Cuir",
+      "type": "armure",
+      "defense": 15,
+      "personnage_id": 4,
+      "rarete": "commun"
+    },
+    {
+      "id": "9",
+      "nom": "Sceptre des Ombres",
+      "type": "arme",
+      "degats_magiques": 50,
+      "personnage_id": 5,
+      "rarete": "épique"
+    },
+    {
+      "id": "10",
+      "nom": "Cape Maudite",
+      "type": "armure",
+      "effet": "réduit les dégâts reçus de 10%",
+      "personnage_id": 5,
+      "rarete": "épique"
+    },
+    {
+      "id": "11",
+      "nom": "Canon à Plasma",
+      "type": "arme",
+      "degats": 45,
+      "personnage_id": 6,
+      "rarete": "légendaire"
+    },
+    {
+      "id": "12",
+      "nom": "Armure Renforcée",
+      "type": "armure",
+      "defense": 25,
+      "personnage_id": 6,
+      "rarete": "rare"
+    }
+  ]
+}

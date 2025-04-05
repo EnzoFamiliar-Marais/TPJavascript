@@ -1,0 +1,136 @@
+/* Style général de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur principal */
+.container {
+    padding: 1.25rem; /* 20px */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Style pour la sélection des personnages */
+.personnages-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.25rem; /* 20px */
+}
+
+.personnage-item {
+    list-style: none;
+}
+
+.personnage-card {
+    background: url('path/to/your/background-image.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 1.25rem; /* 20px */
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.personnage-card h3 {
+    margin-bottom: 0.625rem; /* 10px */
+    font-size: 1.5em;
+    color: #000;
+}
+
+.personnage-card p {
+    font-size: 1em;
+    color: #000;
+}
+
+.personnage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-select {
+    display: inline-block;
+    margin-top: 0.625rem; /* 10px */
+    padding: 0.625rem 1rem; /* 10px 15px */
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-select:hover {
+    background-color: #0056b3;
+}
+
+/* Style du bouton retour */
+.btn-back {
+    display: inline-block;
+    margin-top: 1.25rem; /* 20px */
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1.25rem; /* Un peu d'espace en bas */
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+}
+
+/* Style pour chaque combattant */
+.combattant {
+    flex: 0 0 30%; /* Largeur fixe de 30% */
+    background-color: #f0f0f5;
+    padding: 1.25rem; /* 20px */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 250px; /* Largeur minimale */
+}
+
+/* Style pour le log de combat (au centre) */
+.combat-log {
+    flex: 0 0 35%; /* Largeur légèrement plus grande */
+    background-color: #e9ecef;
+    padding: 1.25rem; /* 20px */
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    order: 2; /* Position au milieu */
+    height: 100%; /* Prend toute la hauteur disponible */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteneur des combattants (optionnel si besoin de regrouper) */
+.combattants {
+    display: flex;
+    justify-content: space-between; /* Espacement entre les combattants */
+}
+
+/* Positionnement spécifique des combattants */
+.perso1 {
+    order: 1; /* À gauche */
+}
+
+.perso2 {
+    order: 3; /* À droite */
+}
+
+/* Position du bouton retour sous les combattants et log */
+.combat-section .btn-back {
+    width: 100%; /* Prend toute la largeur */
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem; /* Décalage vers le bas */
+}
